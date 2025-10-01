@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://vfuuj0tgjsre"]
+
+[ext_resource type="Texture2D" uid="uid://68ybukg0r4wl" path="res://assets/ship1.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dl0ghksl2ogwh" path="res://scripts/controlled.gd" id="1_dqkch"]
+[ext_resource type="FontFile" uid="uid://bn6ptpx88ai8k" path="res://fonts/pixel-game.otf" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://d3p0uelo8rrap" path="res://assets/shield.png" id="2_qhqgy"]
+[ext_resource type="Script" uid="uid://bq0xn12b76eb2" path="res://scripts/ship_area.gd" id="2_qlg0r"]
+[ext_resource type="Texture2D" uid="uid://bhlmtn2bksh8j" path="res://assets/flame.png" id="5_tuyoq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dqkch"]
+radius = 16.1658
+
+[node name="player" type="Node2D"]
+script = ExtResource("1_dqkch")
+
+[node name="ShipArea" type="Area2D" parent="."]
+scale = Vector2(1.48462, 1.5)
+script = ExtResource("2_qlg0r")
+
+[node name="ShipSprite" type="Sprite2D" parent="ShipArea"]
+scale = Vector2(0.673573, 0.666667)
+texture = ExtResource("1_3vyb7")
+
+[node name="ShieldSprite" type="Sprite2D" parent="ShipArea/ShipSprite"]
+scale = Vector2(1.48462, 1.5)
+texture = ExtResource("2_qhqgy")
+
+[node name="FlameSprite" type="Sprite2D" parent="ShipArea/ShipSprite"]
+position = Vector2(-3.8147e-06, -24)
+scale = Vector2(1.19565, 1.09052)
+texture = ExtResource("5_tuyoq")
+offset = Vector2(0, 6)
+
+[node name="ShipCollision" type="CollisionShape2D" parent="ShipArea"]
+position = Vector2(1.90735e-06, 0)
+shape = SubResource("CircleShape2D_dqkch")
+
+[node name="PositionLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -64.0
+offset_right = 72.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_g2els")
+text = "YOU"
+horizontal_alignment = 1
+vertical_alignment = 1
