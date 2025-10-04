@@ -20,14 +20,8 @@ func _process(delta):
 	speed-=2
 	if speed<0:
 		speed=0
-	if move_vector.x>0:
-		move_vector.x-=2
-	elif move_vector.x<0:
-		move_vector.x+=2
-	if move_vector.y>0:
-		move_vector.y-=2
-	elif move_vector.y<0:
-		move_vector.y+=2
+	if move_vector.length()>0:
+		move_vector-=move_vector.normalized()*1.3
 	var x=speed*cos(get_node("ShipArea/ShipSprite").rotation+PI/2)
 	var y=speed*sin(get_node("ShipArea/ShipSprite").rotation+PI/2)
 	#position+=speed*delta*Vector2(x,y).normalized()
@@ -54,5 +48,6 @@ func damage(pos,vel):
 	sprite.visible=false
 	var impulse=30000/abs((pos.x-position.x)**2+(pos.y-position.y)**2)
 	move_vector-=(Vector2(pos-global_position)*impulse-vel)
+	position+=move_vector.normalized()*1.2
 	#position+=move_vector*0.01
-	print(Vector2(pos-global_position),Vector2(pos-global_position)*impulse)
+	#print(Vector2(pos-global_position),Vector2(pos-global_position)*impulse)
